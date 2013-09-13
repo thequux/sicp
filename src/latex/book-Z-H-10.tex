@@ -141,15 +141,15 @@ simple expressions such as
 \end{verbatim}
 
 \noindent which the interpreter would readily evaluate to be 57.  We can help
-ourselves by writing such an expression in the form<p>
+ourselves by writing such an expression in the form
 
-\begin{verbatim}
+\begin{schemedisplay}
 (+ (* 3
       (+ (* 2 4)
          (+ 3 5)))
    (+ (- 10 7)
       6))
-\end{verbatim}
+\end{schemedisplay}
 
 \noindent following a formatting convention known as
 \idef{pretty-printing}, in which each long combination is written so
@@ -273,10 +273,10 @@ Notice how succinctly the idea of recursion can be used to express
 what, in the case of a deeply nested combination, would otherwise be
 viewed as a rather complicated process.  For example, evaluating
 
-\begin{verbatim}
+\begin{schemedisplay}
 (* (+ 2 (* 4 6))
    (+ 3 5 7))
-\end{verbatim}
+\end{schemedisplay}
 
 \noindent requires that the evaluation rule be applied to four
 different combinations.  We can obtain a picture of this process by
@@ -401,9 +401,9 @@ We begin by examining how to express the idea of ``squaring.''  We
 might say, ``To square something, multiply it by itself.''  This is
 expressed in our language as 
 
-\begin{verbatim}
+\begin{schemedisplay}
 > (define (square x) (* x x))
-\end{verbatim}
+\end{schemedisplay}
 
 We can understand this in the following way:
 
@@ -430,9 +430,9 @@ compound procedure and associates it with the name \texttt{square}.
 
 The general form of a procedure definition is
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (<name> <formal parameters>) <body>)
-\end{verbatim}
+\end{schemedisplay}
 
 The \slot{name}; is a symbol to be associated with the procedure
 definition in the environment.\footnote{Throughout this book, we will
@@ -514,15 +514,15 @@ arguments is built into the interpreter.  For compound procedures, the
 application process is as follows:
 
 % TODO: Format this as pseudocode
-\begin{theorem}
+\begin{verbatim}
 To apply a compound procedure to arguments, evaluate the body of the
 procedure with each formal parameter replaced by the corresponding
 argument.
-\end{theorem}
+\end{verbatim}
 
 To illustrate this process, let's evaluate the combination
 
-\begin{verbatim}
+\begin{schemedisplay}
 (f 5)
 \end{verbatim}
 
@@ -530,15 +530,15 @@ where \texttt{f} is the procedure defined in
 section \ref{sec:1.1.4}.  We begin by retrieving the
 body of \texttt{f}
 
-\begin{verbatim}
+\begin{schemedisplay}
 (sum-of-squares (+ a 1) (* a 2))
-\end{verbatim}
+\end{schemedisplay}
 
 Then we replace the formal parameter \texttt{a} by the argument 5:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (sum-of-squares (+ 5 1) (* 5 2))
-\end{verbatim}
+\end{schemedisplay}
 
 Thus the problem reduces to the evaluation of a combination with two
 operands and an operator \texttt{sum-of-squares}.  Evaluating this
@@ -550,28 +550,28 @@ procedure to 6 and 10.  These values are substituted for the formal
 parameters \texttt{x} and \texttt{y} in the body of
 \texttt{sum-of-squares}, reducing the expression to
 
-\begin{verbatim}
+\begin{schemedisplay}
 (+ (square 6) (square 10))
-\end{verbatim}
+\end{schemedisplay}
 
 If we use the definition of \texttt{square}, this reduces to
 
-\begin{verbatim}
+\begin{schemedisplay}
 (+ (* 6 6) (* 10 10))
-\end{verbatim}
+\end{schemedisplay}
 
 which reduces by multiplication to
 
 
-\begin{verbatim}
+\begin{schemedisplay}
 (+ 36 100)
-\end{verbatim}
+\end{schemedisplay}
 
 and finally to
 
-\begin{verbatim}
+\begin{schemedisplay}
 136
-\end{verbatim}
+\end{schemedisplay}
 
 The process we have just described is called the \textit{substitution
 model} for procedure application.  It can be taken as a model that
@@ -626,38 +626,38 @@ for parameters until it obtained an expression involving only
 primitive operators, and would then perform the evaluation.  If we
 used this method, the evaluation of
 
-\begin{verbatim}
+\begin{schemedisplay}
 (f 5)
-\end{verbatim}
+\end{schemedisplay}
 
 \noindent would proceed according to the sequence of expansions
 
-\begin{verbatim}
+\begin{schemedisplay}
 (sum-of-squares (+ 5 1) (* 5 2))
 
 (+    (square (+ 5 1))      (square (* 5 2))  )
 
 (+    (* (+ 5 1) (+ 5 1))   (* (* 5 2) (* 5 2)))
-\end{verbatim}
+\end{schemedisplay}
 
 \noindent followed by the reductions
 
-\begin{verbatim}
+\begin{schemedisplay}
 (+         (* 6 6)             (* 10 10))
 
 (+           36                   100)
 
                     136
-\end{verbatim}
+\end{schemedisplay}
 
 This gives the same answer as our previous evaluation model, but the
 process is different.  In particular, the evaluations
 of \texttt{(+ 5 1)} and \texttt{(* 5 2)} are each performed twice here,
 corresponding to the reduction of the expression
 
-\begin{verbatim}
+\begin{schemedisplay}
 (* x x)
-\end{verbatim}
+\end{schemedisplay}
 
 \noindent with \texttt{x} replaced respectively by \texttt{(+ 5 1)} and \texttt{(* 5 2)}.
 
@@ -713,22 +713,22 @@ there is a special form in Lisp for notating such a case
 analysis.  It is called \texttt{cond} (which stands for
 ``conditional''), and it is used as follows:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (abs x)
   (cond ((> x 0) x)
         ((= x 0) 0)
         ((< x 0) (- x))))
-\end{verbatim}
+\end{schemedisplay}
 
 The general form of a conditional expression is
 
-\begin{verbatim}
+\begin{schemedisplay}
 % TODO: Format this properly
 (cond (<<em>p_1</em>> <<em>e_1</em>>)
       (<<em>p_2</em>> <<em>e_2</em>>)
       <img src="book-Z-G-D-18.gif" border="0">
       (<<em>p_{<em>n</em>}</em>> <<em>e_{<em>n</em>}</em>>))
-\end{verbatim}
+\end{schemedisplay}
 
 consisting of the symbol \texttt{cond} followed by parenthesized pairs
 of expressions \texttt{(\slot{p} \slot{e})} called \idef{clauses}. The
@@ -767,11 +767,11 @@ accordingly.
 
 Another way to write the absolute-value procedure is
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (abs x)
   (cond ((< x 0) (- x))
         (else x)))
-\end{verbatim}
+\end{schemedisplay}
 
 \noindent which could be expressed in English as ``If $x$ is less than
 zero return $-x$; otherwise return $x$.''  \texttt{Else} is a special
@@ -783,20 +783,20 @@ evaluates to a true value could be used as the \slot{p} here.
 
 Here is yet another way to write the absolute-value procedure:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (abs x)
   (if (< x 0)
       (- x)
       x))
-\end{verbatim}
+\end{schemedisplay}
 
 This uses the special form \texttt{if}, a restricted type of conditional
 that can be used when there are precisely two cases in the case
 analysis.  The general form of an \texttt{if} expression is
 
-\begin{verbatim}
+\begin{schemedisplay}
 (if \slot{predicate} \slot{consequent} \slot{alternative})
-\end{verbatim}
+\end{schemedisplay}
 
 To evaluate an \texttt{if} expression, the interpreter starts by
 evaluating the \slot{predicate} part of the expression.  If the
@@ -840,31 +840,31 @@ The value of a \texttt{not} expression is true
 when the expression \slot{e} evaluates to false, and false otherwise.
 \end{itemize}
 
-\item Notice that \texttt{and} and \texttt{or} are special forms, not
-  procedures, because the subexpressions are not necessarily all
-  evaluated.  \texttt{Not} is an ordinary procedure.
+Notice that \texttt{and} and \texttt{or} are special forms, not
+procedures, because the subexpressions are not necessarily all
+evaluated.  \texttt{Not} is an ordinary procedure.
 
 As an example of how these are used, the condition that a number
 $x$ be in the range $5 < x < 10$ may be expressed as
 
-\begin{verbatim}
+\begin{schemedisplay}
 (and (> x 5) (< x 10))
-\end{verbatim}
+\end{schemedisplay}
 
 As another example, we can define a predicate to test whether one
 number is greater than or equal to another as
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (>= x y)
   (or (> x y) (= x y)))
-\end{verbatim}
+\end{schemedisplay}
 
 \noindent or alternatively as
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (>= x y)
   (not (< x y)))
-\end{verbatim}
+\end{schemedisplay}
 
 \begin{Exercise}
   \label{exc:1.1}
@@ -872,7 +872,7 @@ Below is a sequence of expressions.  What is the result printed by the
 interpreter in response to each expression?  Assume that the sequence
 is to be evaluated in the order in which it is presented.
 
-\begin{verbatim}
+\begin{schemedisplay}
 10
 (+ 5 3 4)
 (- 9 1)
@@ -893,7 +893,7 @@ is to be evaluated in the order in which it is presented.
          ((< a b) b)
          (else -1))
    (+ a 1))
-\end{verbatim}
+\end{schemedisplay}
 \end{Exercise}
 
 \begin{Exercise}
@@ -916,33 +916,32 @@ the sum of the squares of the two larger numbers.
 Observe that our model of evaluation allows for combinations whose
 operators are compound expressions.  Use this observation to
 describe the behavior of the following procedure:
-\begin{verbatim}
+\begin{schemedisplay}
 (define (a-plus-abs-b a b)
   ((if (> b 0) + -) a b))
-\end{verbatim}
+\end{schemedisplay}
 \end{Exercise}
 
-\end{Exercise}
 \begin{Exercise}
 \label{exc:1.5}
 Ben Bitdiddle has invented a test to determine whether the interpreter
 he is faced with is using applicative-order evaluation or normal-order
 evaluation.  He defines the following two procedures:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (p) (p))
 
 (define (test x y)
   (if (= x 0)
       0
       y))
-\end{verbatim}
+\end{schemedisplay}
 
 Then he evaluates the expression
 
-\begin{verbatim}
+\begin{schemedisplay}
 (test 0 (p))
-\end{verbatim}
+\end{schemedisplay}
 
 What behavior will Ben observe with an interpreter that uses
 applicative-order evaluation?  What behavior will he observe with an
@@ -976,11 +975,11 @@ definition does not describe a procedure.  Indeed, it tells us almost
 nothing about how to actually find the square root of a given number.  It
 will not help matters to rephrase this definition in pseudo-Lisp:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (sqrt x)
   (the y (and (>= y 0)
               (= (square y) x))))
-\end{verbatim}
+\end{schemedisplay}
 
 This only begs the question.
 
@@ -1029,8 +1028,9 @@ the square root of 2 as follows.  Suppose our initial guess is 1:
   \hline{}
   1 & $2/1 = 2$ & $\frac{2+1}{2} = 1.5$ \\
   1.5 & $\frac{2}{1.5} = 1.3333$ & $\frac{1.3333 + 1.5}{2} = 1.4167$ \\
-  1.4167 & $\frac{2}{1.4167} = 1.4118$ & $\frac{1.4167 + 1.4118}{2} = 1.4142 \\
-  1.4142 & \ldots & \ldots \\ \hline{}
+  1.4167 & $\frac{2}{1.4167} = 1.4118$ & $\frac{1.4167 + 1.4118}{2} = 1.4142$ \\
+  1.4142 & \ldots & \ldots \\
+  \hline{}
   % TODO: Fix the lines coming out of the bottom of this table.
 \end{tabular}
 
@@ -1043,28 +1043,28 @@ to compute) and a value for the guess.  If the guess is good enough
 for our purposes, we are done; if not, we must repeat the process with an
 improved guess.  We write this basic strategy as a procedure:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (sqrt-iter guess x)
   (if (good-enough? guess x)
       guess
       (sqrt-iter (improve guess x)
                  x)))
-\end{verbatim}
+\end{schemedisplay}
 
 A guess is improved by averaging
 it with the quotient of the radicand and the old guess:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (improve guess x)
   (average guess (/ x guess)))
-\end{verbatim}
+\end{schemedisplay}
 
 \noindent where
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (average x y)
   (/ (+ x y) 2))
-\end{verbatim}
+\end{schemedisplay}
 
 We also have to say what we mean by ``good enough.''  The following
 will do for illustration, but it is not really a very good test.  (See
@@ -1076,10 +1076,10 @@ than a predetermined tolerance (here 0.001):\footnote{We will usually
   convention.  As far as the interpreter is concerned, the question
   mark is just an ordinary character.}
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (good-enough? guess x)
   (< (abs (- (square guess) x)) 0.001))
-\end{verbatim}
+\end{schemedisplay}
 
 Finally, we need a way to get started.  For instance, we can always
 guess that the square root of any number is 1:\footnote{Observe that
@@ -1097,15 +1097,15 @@ guess that the square root of any number is 1:\footnote{Observe that
   and decimals always yield decimals, so starting with an initial
   guess of 1.0 forces all subsequent values to be decimals.}
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (sqrt x)
   (sqrt-iter 1.0 x))
-\end{verbatim}
+\end{schemedisplay}
 
 If we type these definitions to the interpreter, we can use \texttt{sqrt}
 just as we can use any procedure:
 
-\begin{verbatim}
+\begin{schemedisplay}
 > (sqrt 9)
 3.00009155413138
 > (sqrt (+ 100 37))
@@ -1114,7 +1114,7 @@ just as we can use any procedure:
 > 1.7739279023207892
 (square (sqrt 1000))
 > 1000.000369924366
-\end{verbatim}
+\end{schemedisplay}
 
 The \texttt{sqrt} program also illustrates that the simple procedural
 language we have introduced so far is sufficient for writing any
@@ -1128,7 +1128,6 @@ construct other than the ordinary ability to call a procedure.
   in using procedure calls to implement iteration should note the
   remarks on ``tail recursion'' in section \ref{sec:1.2.1}}
 
-\end{Exercise}
 \begin{Exercise}
 \label{exc:1.6}
 Alyssa P. Hacker doesn't see why \texttt{if} needs to be provided as a
@@ -1136,11 +1135,11 @@ special form.  ``Why can't I just define it as an ordinary procedure
 in terms of \texttt{cond}?'' she asks.  Alyssa's friend Eva Lu Ator
 claims this can indeed be done, and she defines a new version of
 \texttt{if}:
-\begin{verbatim}
+\begin{schemedisplay}
 (define (new-if predicate then-clause else-clause)
   (cond (predicate then-clause)
         (else else-clause)))
-\end{verbatim}
+\end{schemedisplay}
 
 Eva demonstrates the program for Alyssa:
 
@@ -1154,19 +1153,18 @@ Eva demonstrates the program for Alyssa:
 Delighted, Alyssa uses \texttt{new-if} to rewrite the square-root
 program:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (sqrt-iter guess x)
   (new-if (good-enough? guess x)
           guess
           (sqrt-iter (improve guess x)
                      x)))
-\end{verbatim}
+\end{schemedisplay}
 
 What happens when Alyssa attempts to use this to compute square roots?
 Explain.
 \end{Exercise}
 
-\end{Exercise}
 \begin{Exercise}
 \label{exc:1.7}
 The \texttt{good-enough?} test used in computing square roots will not
@@ -1182,7 +1180,6 @@ square-root procedure that uses this kind of end test.  Does this work
 better for small and large numbers?
 \end{Exercise}
 
-\end{Exercise}
 \begin{Exercise}
 \label{exc:1.8}
 Newton's method for cube roots is based on the fact that if \textit{y} is an
@@ -1259,14 +1256,14 @@ the value. \footnote{It is not even clear which of these procedures is
   has extensive tables of logarithms and antilogarithms stored in a
   very efficient manner.}
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (square x) (* x x))
 
 (define (square x) 
   (exp (double (log x))))
 
 (define (double x) (+ x x))
-\end{verbatim}
+\end{schemedisplay}
 
 So a procedure definition should be able to suppress detail.  The
 users of the procedure may not have written the procedure themselves,
@@ -1281,11 +1278,11 @@ the user of the procedure is the implementer's choice of names for the
 procedure's formal parameters.  Thus, the following procedures should
 not be distinguishable:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (square x) (* x x))
 
 (define (square y) (* y y))
-\end{verbatim}
+\end{schemedisplay}
 
 This principle -- that the meaning of a procedure should be independent
 of the parameter names used by its author -- seems on the surface to be
@@ -1294,10 +1291,10 @@ consequence is that the parameter names of a procedure must be local
 to the body of the procedure.  For example, we used \texttt{square} in
 the definition of \texttt{good-enough?} in our square-root procedure:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (good-enough? guess x)
   (< (abs (- (square guess) x)) 0.001))
-\end{verbatim}
+\end{schemedisplay}
 
 The intention of the author of \texttt{good-enough?} is to determine if
 the square of the first argument is within a given tolerance of the
@@ -1354,7 +1351,7 @@ square-root program illustrates another way in which we would like to
 control the use of names.  The existing program consists of separate
 procedures:
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (sqrt x)
   (sqrt-iter 1.0 x))
 (define (sqrt-iter guess x)
@@ -1365,7 +1362,7 @@ procedures:
   (< (abs (- (square guess) x)) 0.001))
 (define (improve guess x)
   (average guess (/ x guess)))
-\end{verbatim}
+\end{schemedisplay}
 
 The problem with this program is that the only procedure that is
 important to users of \texttt{sqrt} is \texttt{sqrt}.  The other
@@ -1386,7 +1383,7 @@ successive approximations, each having its own private
 procedure to have internal definitions that are local to that
 procedure.  For example, in the square-root problem we can write
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (sqrt x)
   (define (good-enough? guess x)
     (< (abs (- (square guess) x)) 0.001))
@@ -1397,7 +1394,7 @@ procedure.  For example, in the square-root problem we can write
         guess
         (sqrt-iter (improve guess x) x)))
   (sqrt-iter 1.0 x))
-\end{verbatim}
+\end{schemedisplay}
 
 Such nesting of definitions, called \idef{block structure},
 is basically the right solution to the simplest 
@@ -1419,7 +1416,7 @@ the environment in which the procedure was defined.  We will see how
 this works in detail in chapter \ref{chap:3} when we study environments and the
 detailed behavior of the interpreter.}
 
-\begin{verbatim}
+\begin{schemedisplay}
 (define (sqrt x)
   (define (good-enough? guess)
     (< (abs (- (square guess) x)) 0.001))
@@ -1430,7 +1427,7 @@ detailed behavior of the interpreter.}
         guess
         (sqrt-iter (improve guess))))
   (sqrt-iter 1.0))
-\end{verbatim}
+\end{schemedisplay}
 
 We will use block structure extensively to help us break up large
 programs into tractable pieces. \footnote{Embedded definitions must

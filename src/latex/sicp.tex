@@ -1,7 +1,22 @@
 \documentclass[a4paper,unicode]{book}
+\usepackage{hyperref}
+\usepackage{color}
 \usepackage{amsmath}
+\usepackage{slatex}
+\usepackage{listings}
 \usepackage{tikz}
 \usepackage{exercise}
+
+\definecolor{keyword}{rgb}{0.6,0,0}
+\definecolor{variable}{rgb}{0,0,0.6}
+\definecolor{constant}{rgb}{0,0.6,0}
+\def\keywordfont#1{{\color{keyword}\tt #1}}
+\def\variablefont#1{{\color{variable}\tt #1}}
+\def\constantfont#1{{\color{constant}\tt #1}}
+\let\datafont\constantfont 
+\let\schemecodehook\tt
+
+\lstset{language=Lisp}
 \makeindex
 % A definition that should appear in the index
 \newcommand{\slot}[1]{$<$\textit{$#1$}$>$}
