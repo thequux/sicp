@@ -1,5 +1,6 @@
 \documentclass[a4paper,unicode]{book}
-\usepackage{hyperref}
+\usepackage[colorlinks]{hyperref}
+\usepackage{epigraph}
 \usepackage{color}
 \usepackage{amsmath}
 \usepackage{slatex}
@@ -7,6 +8,7 @@
 \usepackage{tikz}
 %\usepackage{exercise}
 \usepackage{amsthm}
+\setlength\epigraphwidth{3 in}
 \theoremstyle{definition}\newtheorem{Exercise}{Exercise}[chapter]
 \theoremstyle{plain}\newtheorem{theorem}{Theorem}[chapter]
 
@@ -22,10 +24,10 @@
 \lstset{language=Lisp}
 \makeindex
 % A definition that should appear in the index
-\newcommand{\slot}[1]{$<#1>$}
+\newcommand{\slot}[1]{$<\!\!#1\!\!>$}
 \newcommand{\idef}[1]{\index{#1}\textit{#1}}
 \newcommand{\IncludeResource}[1][0]{\InputIfFileExists{#1}{\relax}{\relax}}
-\newenvironment{epigraph}[1]{\begin{quotation}}{\end{quotation}}
+%\newenvironment{epigraph}[1]{\begin{quotation}}{\end{quotation}}
 % TODO: print alert on missing file.
 \title{Structure and Interpretation of Computer Programs}
 \begin{document}
@@ -40,4 +42,6 @@
 \input{book-Z-H-9.tex}
 \input{book-Z-H-10.tex}
 \input{book-Z-H-11.tex}
+\input{book-Z-H-12.tex}
+\input{book-Z-H-13.tex}
 \end{document}
