@@ -976,7 +976,7 @@ numbers:
     physics.  To prove the theorem, we consider pairs $(a_{k}
     ,b_{k})$, where $a_k \ge b_k$, for which Euclid's Algorithm
     terminates in $k$ steps.  The proof is based on the claim that, if
-    $(a_{k+1}, b_{k+1}) \rightarrow (a_k, b_k) \rightarrow (a_{k-1},
+    $(a_{k+1}, b_{k+1}) \mapsto (a_k, b_k) \mapsto (a_{k-1},
     b_{k-1})$ are three successive pairs in the reduction process,
     then we must have $b_{k+1} \ge b_k + b_{k-1}$.  To verify the
     claim, consider that a reduction step is defined by applying the
@@ -992,7 +992,7 @@ numbers:
     at least as large as ${\rm Fib}(1) = 1$.  Now, assume that the
     result is true for all integers less than or equal to $k$ and
     establish the result for $k + 1$.  Let $(a_{k+1}, b_{k+1})
-    \rightarrow (a_k, b_k) \rightarrow (a_{k-1}, b_{k-1})$ be
+    \mapsto (a_k, b_k) \mapsto (a_{k-1}, b_{k-1})$ be
     successive pairs in the reduction process.  By our induction
     hypotheses, we have $b_{k-1} \ge {\rm Fib}(k - 1)$ and $b_k \ge
     {\rm Fib}(k)$.  Thus, applying the claim we just proved together
