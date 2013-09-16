@@ -12,7 +12,7 @@ s@<a name="%_idx_[[:digit:]]*"></a>@@g
 # Clean up xrefs
 s@<a href="#%_(fig)_([[:digit:].]*)">\2</a>@\\ref{\1:\2}@g
 s@<a href="(book-Z-H-[[:digit:]]*\.html)?#%_(sec)_([[:digit:].]*)">\3</a>@\\ref{\2:\3}@g
-s@<a href="#%_(thm)_([[:digit:].]*)">\2</a>@\\ref{exc:\2}@g
+s@<a href="(book-Z-H-[[:digit:]]*\.html)?#%_(thm)_([[:digit:].]*)">\3</a>@\\ref{exc:\3}@g
 s@<a name="%_sec_(Temp_)?([[:digit:].]*)"></a>@@g
 s@<a name="footnote_Temp_[0-9]*" href="#call_footnote_Temp_[0-9]*"><sup><small>([0-9]*)</small></sup></a> *@% Footnote \1\n@g
 s@<a name="call_footnote_Temp_[0-9]*" href="#footnote_Temp_[0-9]*"><sup><small>([0-9]*)</small></sup></a>@\\footnote{\1}@g
@@ -58,4 +58,6 @@ s@<h4><a href=[^>]*>([^ [:digit:]][^<]*)</a></h4>@\\subsubsection*{\1}@
 
 # Document structure
 
-
+# TODO: 
+# - <u>[<>]</u>
+# - <\textit{??}>
