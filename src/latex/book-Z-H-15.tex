@@ -25,18 +25,16 @@ to use pairs to combine the numbers 1, 2, 3, and 4.
 
 \begin{figure}
 \centering
-%\begin{tikzpicture}
-  % TODO: create the box and pointer diagram
-%\end{tikzpicture}
-\caption{Box-and-pointer representation of \verbatim(cons 1 2)|}
+\placeholder
+\caption{Box-and-pointer representation of \texttt{(cons 1 2)}}
 \label{fig:2.2}
 \end{figure}
 
 \begin{figure}
-  \centering
-  \placeholder
-  \caption{Two ways to combine 1, 2, 3, and 4 using pairs}
-  \label{fig:2.3}
+\centering
+\placeholder
+\caption{Two ways to combine 1, 2, 3, and 4 using pairs}
+\label{fig:2.3}
 \end{figure}
 
 The ability to create pairs whose elements are pairs is the essence of
@@ -67,7 +65,7 @@ language that illustrates closure in a vivid way.\footnote{7}
   \centering
   % TODO: create the diagram
   \caption{The sequence 1, 2, 3, 4 represented as a chain of pairs.}
-  \label{fig:2.3}
+  \label{fig:2.4}
 \end{figure}
 
 One of the useful structures we can build with pairs is a
@@ -373,6 +371,7 @@ parity as the first argument.  For example,
 (2 4 6)
 \end{schemedisplay}
 \end{Exercise}
+
 
 \subsubsection*{Mapping over lists}
 
@@ -1508,7 +1507,6 @@ the puzzle in time $T$.
 \label{sec:2.2.4}
 
 
-
 This section presents a simple language for drawing pictures that
 illustrates the power of data abstraction and closure, and also
 exploits higher-order procedures in an essential way.  The language is
@@ -1567,7 +1565,7 @@ reversed.
 \begin{figure}
 \centering
 \placeholder
-\caption{Images produced by the \scheme|wave| painter, with respect to
+\caption{Images produced by the \texttt{wave} painter, with respect to
   four different frames.  The frames, shown with dotted lines, are not
   part of the images.}
 \label{fig:2.10}
@@ -1576,6 +1574,7 @@ reversed.
 \begin{figure}
   \centering
   \placeholder
+  % TODO: get scheme working here
   \caption{Images of William Barton Rogers, founder and first
     president of MIT, painted with respect to the same four frames as
     in figure \ref{fig:2.10} (original image reprinted with the
@@ -1598,7 +1597,8 @@ Figure \ref{fig:2.12} shows the drawing of a painter called
     (define wave2                         (define wave4
       (beside wave (flip-vert wave)))       (below wave2 wave2))
   \end{schemedisplay}
-  \caption{Creating a complex figure, starting from the \scheme|wave| painter of figure \ref{fig:2.10}.}
+  % TODO: Get \scheme working here.
+  \caption{Creating a complex figure, starting from the \texttt{wave} painter of figure \ref{fig:2.10}.}
   \label{fig:2.12}
 \end{figure}
 
